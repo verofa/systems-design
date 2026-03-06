@@ -1,0 +1,22 @@
+version: '3'
+services:
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_DEBUG=1
+    volumes:
+      - ./tinyurl.db:/app/tinyurl.db
+
+  # Optional: Use an external SQLite volume
+  # db: # Uncomment to use external DB
+  #   image: bitnami/sqlite:latest
+  #   volumes:
+  #     - tinyurl-db:/tmp/sqlite
+  #   environment:
+  #     - SQLITE_DATABASE=/tmp/sqlite/tinyurl.db
+
+# volumes:
+#   # Uncomment to use external DB
+#   # tinyurl-db:
