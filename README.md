@@ -55,7 +55,7 @@ design because:
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/systems-design.git
+git clone https://github.com/verofa/systems-design.git
 
 # Change directory
 cd systems-design/tiny-url
