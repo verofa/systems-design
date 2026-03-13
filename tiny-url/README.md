@@ -6,8 +6,8 @@
 - **SQLite Database**: Stores URL mappings (local-first for simplicity).
 - **Docker Compose**: Manages containers for the app and database.
 - **HTTP API Endpoints**:
-- `POST /api/shorten`: Accepts a long URL and returns a short URL.
-- `GET /<short_code>`: Redirects to the original URL.
+  - `POST /api/shorten`: Accepts a long URL and returns a short URL.
+  - `GET /<short_code>`: Redirects to the original URL.
 
 ## 2. Code Structure
 
@@ -23,7 +23,7 @@ tiny-url-system/
 
 ## 3. Usage
 
-1. **Start the system**:
+1. **Start the system**
 
 ```bash
 ❯ docker-compose up --build -d
@@ -139,13 +139,15 @@ CREATE TABLE urls (
 ### Data Flow
 
 1. **Shortening a URL**
+
    a) User sends POST request with long URL
    b) API Validate URL and check if exist in the database
-   C) If not found, generates a new short code
+   c) If not found, generates a new short code
    d) And stores the mappings in the database
    e) Returns short URL to the user
 
 2. **Redirection**
+
    a) User visits the short URL
    b) API extracts short_code
    c) Queries the database to get the long URL
