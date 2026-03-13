@@ -55,13 +55,13 @@ design because:
 
 ```bash
 # Clone the repository
-git clone https://github.com/verofa/systems-design.git
+🦄❯ git clone https://github.com/verofa/systems-design.git
 
 # Change directory
-cd systems-design/tiny-url
+🦄❯ cd systems-design/tiny-url/monolithic
 
 # Start the service
-docker build -t tinyurl-monolithic .
-docker run -p 5000:5000 tinyurl-monolithic
+🦄❯ docker build -t tinyurl-monolithic .
+🦄❯ docker run -p 5000:5000 tinyurl-monolithic
 
 ```

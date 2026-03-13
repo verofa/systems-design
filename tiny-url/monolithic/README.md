@@ -159,7 +159,7 @@ To get started with the TinyURL system, clone the GitHub repository:
 After cloning, change into the project directory:
 
 ```bash
-🦄❯ cd systems-design/tiny-url
+🦄❯ cd systems-design/tiny-url/monolithic
 ```
 
 ### 3.3 **Start the system**
