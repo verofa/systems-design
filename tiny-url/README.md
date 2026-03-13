@@ -89,3 +89,64 @@ app-1  |  * Debugger PIN: 167-628-980
                           └─────────────────────┘
 
 ```
+
+# Detail Component Breakdown
+
+## 1. User Interface
+
+- Web Browser
+- Command-line tools (`curl`,`Postman`)
+- Mobile clients via API calls
+
+## 2. API Gateway - Flask App
+
+- Endpoints:
+  - `POST /api/shorten`: Accepts JSON and expect `url` field
+  - `GET /<short_code>`: Redirect to original URL
+
+- **Core Logic**
+  - URL validation
+  - Short code generation
+  - Database interaction
+  - Error handling
+
+## 3. Database (SQLite)
+
+- Stores URL mappings
+- Schema:
+
+```sql
+CREATE TABLE urls (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    long_url TEXT UNIQUE NOT NULL,
+    short_code TEXT UNIQUE NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+## 4. Docker Containers
+
+```bash
+┌───────────────┐       ┌─────────────────┐
+│               │       │                 │
+│ API Container ├───────► Database Vol    │
+│  (Flask)      │       │  (SQLite DB)    │
+│   app.py      │◀──────►  tinyurl.db     │
+│               │       │                 │
+└───────────────┘       └─────────────────┘
+```
+
+### Data Flow
+
+1. **Shortening a URL**
+   a) User sends POST request with long URL
+   b) API Validate URL and check if exist in the database
+   C) If not found, generates a new short code
+   d) And stores the mappings in the database
+   e) Returns short URL to the user
+
+2. **Redirection**
+   a) User visits the short URL
+   b) API extracts short_code
+   c) Queries the database to get the long URL
+   d) Performs HTTP redirect to original URL
