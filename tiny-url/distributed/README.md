@@ -15,13 +15,15 @@ using modern technologies.
 
 ### 1.1 High Level Overview
 
-<div style="margin: 0 auto; text-align: center;">
- ![Tiny-URL-Architecture](images/system-architecture.jpg){width=80%}
-</div>
+<p align="center">
+<img src="images/system-architecture.jpg" alt="Tiny-URL-Architecture" style="width:80%; height:auto;">
+</p>
 
 ### 1.2 Low Level Overview
 
+<p align="center">
 <img src="images/system-architecture-l.jpg" alt="Tiny-URL-Architecture" style="width:80%; height:auto;">
+</p>
 
 ## 📁 2. Code Structure
 
