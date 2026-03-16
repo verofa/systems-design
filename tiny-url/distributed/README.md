@@ -85,7 +85,7 @@ To get started with the TinyURL system, clone the GitHub repository:
 After cloning, change into the project directory:
 
 ```bash
-🦄❯ cd systems-design/tiny-url/monolithic
+🦄❯ cd systems-design/tiny-url/distributed
 ```
 
 ### 3.3 **Start the system**
@@ -99,10 +99,14 @@ After cloning, change into the project directory:
 ```bash
 🦄❯ docker-compose ps
 NAME             IMAGE          COMMAND           SERVICE   CREATED          STATUS          PORTS
-tiny-url-app-1   tiny-url-app   "python app.py"   app       19 seconds ago   Up 18 seconds   0.0.0.0:5000->5000/tcp
+NAME                IMAGE                COMMAND                  SERVICE   CREATED       STATUS                 PORTS
+distributed-app-1   distributed-app      "python app.py"          app       4 hours ago   Up 4 hours             0.0.0.0:5000->5000/tcp
+distributed-db-1    postgres:16-alpine   "docker-entrypoint.s…"   db        4 hours ago   Up 4 hours (healthy)   5432/tcp
 ```
 
 **Tail the logs**
+
+- a) Check service `app` logs:
 
 ```bash
 🦄❯ docker-compose logs -f --tail=200 app
@@ -117,6 +121,23 @@ app-1  | Press CTRL+C to quit
 app-1  |  * Restarting with stat
 app-1  |  * Debugger is active!
 app-1  |  * Debugger PIN: 167-628-980
+```
+
+- b) Check service `db` logs:
+
+```bash
+🦄❯ docker-compose logs -f --tail=200 db
+...
+db-1  |
+db-1  | PostgreSQL init process complete; ready for start up.
+db-1  |
+db-1  | 2026-03-16 00:23:41.342 UTC [1] LOG:  starting PostgreSQL 16.13 on aarch64-unknown-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+db-1  | 2026-03-16 00:23:41.342 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1  | 2026-03-16 00:23:41.342 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1  | 2026-03-16 00:23:41.343 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1  | 2026-03-16 00:23:41.344 UTC [57] LOG:  database system was shut down at 2026-03-16 00:23:41 UTC
+db-1  | 2026-03-16 00:23:41.346 UTC [1] LOG:  database system is ready to accept connections
+db-1  | 2026-03-16 00:28:41.451 UTC [55] LOG:  checkpoint starting: time
 ```
 
 **Test the endpoints**
@@ -134,6 +155,12 @@ app-1  |  * Debugger PIN: 167-628-980
 
 ```bash
  🦄❯ curl http://localhost:5000/abc123
+```
+
+- Check All the processed URLs:
+
+```bash
+ 🦄❯ curl -v http://localhost:5000/api/urls
 ```
 
 [Accepts JSON and expect `url` field]: https://github.com/verofa/systems-design/blob/e4b8b55b9297435c062eda8f4b43f4ee5e114241/tiny-url/app.py#L15-L22
