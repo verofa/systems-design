@@ -21,11 +21,13 @@ using modern technologies.
 
 ### 1.2 Low Level Overview
 
+#### 1.2.1 Code (Python) Overview
+
 <p align="center">
 <img src="images/system-architecture-l.jpg" alt="Tiny-URL-Architecture" style="width:80%; height:auto;">
 </p>
 
-#### 1.2.2 Docker definition Overview
+#### 1.2.2 Docker Services Overview
 
 <p align="center">
 <img src="images/system-architecture-docker.jpg" alt="Docker-Architecture" style="width:80%; height:auto;">
