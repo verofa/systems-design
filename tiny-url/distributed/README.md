@@ -15,8 +15,9 @@ using modern technologies.
 
 ### 1.1 High Level Overview
 
-![Tiny-URL-Architecture](images/system-architecture.jpg)
-<img src="images/system-architecture.jpg" alt="Tiny-URL-Architecture" style="width:80%; height:auto;">
+<div style="margin: 0 auto; text-align: center;">
+ ![Tiny-URL-Architecture](images/system-architecture.jpg){width=80%}
+</div>
 
 ### 1.2 Low Level Overview
 
