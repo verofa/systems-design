@@ -13,7 +13,7 @@ using modern technologies.
 
 ## 📚 1. High Level System Architecture
 
-![Tiny-URL-Architecture](images/system-architecturei.jpg)
+![Tiny-URL-Architecture](images/system-architecture.jpg)
 
 ##### 3. Database (SQLite)
 
