@@ -11,52 +11,15 @@ This document serves as both a technical reference and a learning tool,
 showcasing how to build a fully functional URL shortening service from scratch
 using modern technologies.
 
-## 📚 1. High Level System Architecture
+## 📚 1. System Architecture
+
+### 1.1 High Level Overview
 
 ![Tiny-URL-Architecture](images/system-architecture.jpg)
 
-##### 3. Database (SQLite)
+### 1.2 Low Level Overview
 
-- Stores URL mappings
-- Schema:
-
-```sql
-CREATE TABLE urls (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    long_url TEXT UNIQUE NOT NULL,
-    short_code TEXT UNIQUE NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-);
-```
-
-##### 4. Docker Containers
-
-```bash
-        ┌───────────────┐       ┌─────────────────┐
-        │               │       │                 │
-        │ API Container ├───────► Database Vol    │
-        │  (Flask)      │       │  (SQLite DB)    │
-        │   app.py      │◀──────►  tinyurl.db     │
-        │               │       │                 │
-        └───────────────┘       └─────────────────┘
-```
-
-###### ➜ Data Flow
-
-1. **Shortening a URL**
-
-- a) User sends POST request with long URL
-- b) API Validate URL and check if exist in the database
-- c) If not found, generates a new short code
-- d) And stores the mappings in the database
-- e) Returns short URL to the user
-
-2. **Redirection**
-
-- a) User visits the short URL
-- b) API extracts short_code
-- c) Queries the database to get the long URL
-- d) Performs HTTP redirect to original URL
+![Tiny-URL-Architecture](images/system-architecture-l.jpg)
 
 ## 📁 2. Code Structure
 
